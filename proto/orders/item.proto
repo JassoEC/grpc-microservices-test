@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option go_package = "github.com/jassoec/grpc-microservices-test/protogen/golang/orders";
+
+message OrderItem {
+  string productId = 1 [json_name = "productId"];
+  int32 quantity = 2 [json_name = "quantity"];
+}

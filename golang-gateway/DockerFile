@@ -1,0 +1,10 @@
+FROM golang:1.19.0
+
+WORKDIR /usr/src/app
+
+RUN go install github.com/air-verse/air@latest
+
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
+
+COPY . .
+RUN go mod tidy

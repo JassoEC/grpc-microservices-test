@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option go_package = "github.com/jassoec/grpc-microservices-test/protogen/golang/products";
+
+
+message Product {
+  string id = 1 [json_name = "productId"];
+  string name = 2 [json_name = "name"];
+  string description = 3 [json_name = "description"];
+  float price = 4 [json_name = "price"];
+  int32 available = 5 [json_name = "available"];
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option go_package = "github.com/jassoec/grpc-microservices-test/protogen/golang/orders";
+
+import "item.proto";
+
+message Order {
+  string id = 1 [json_name = "orderId"];
+  string customerId = 2 [json_name = "customerId"];
+  repeated OrderItem items = 3 [json_name = "items"];
+  float total = 4 [json_name = "total"];
+}

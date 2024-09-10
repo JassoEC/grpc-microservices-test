@@ -1,35 +1,48 @@
 version: "3"
 
 services:
-  products:
-    container_name: products-service-container
-    image: products-service-api
+  gateway:
+    # container_name: gateway-service-container
     build:
-      context: ./product-service
+      context: ./golang-gateway
       dockerfile: Dockerfile
     ports:
-      - 3001:3000
+      - 3000:3000
+    volumes:
+      - ./golang-gateway:/usr/src/app
+    command: air ./main.go make protoc
     networks:
       - backend_network
-    volumes:
-      - ./product-service:/usr/src/app
-      - /usr/src/app/node_modules
-    restart: unless-stopped
 
-  orders:
-    container_name: orders-service-container
-    image: orders-service-api
-    build:
-      context: ./order-service
-      dockerfile: Dockerfile
-    ports:
-      - 3002:3000
-    networks:
-      - backend_network
-    volumes:
-      - ./order-service:/usr/src/app
-      - /usr/src/app/node_modules
-    restart: unless-stopped
+  # products:
+  #   container_name: products-service-container
+  #   image: products-service-api
+  #   build:
+  #     context: ./product-service
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3001:3000
+  #   networks:
+  #     - backend_network
+  #   volumes:
+  #     - ./product-service:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   restart: unless-stopped
+
+  # orders:
+  #   container_name: orders-service-container
+  #   image: orders-service-api
+  #   build:
+  #     context: ./order-service
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3002:3000
+  #   networks:
+  #     - backend_network
+  #   volumes:
+  #     - ./order-service:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   restart: unless-stopped
 
 networks:
   backend_network:
