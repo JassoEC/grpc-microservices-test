@@ -10,7 +10,8 @@ services:
       - 3000:3000
     volumes:
       - ./golang-gateway:/usr/src/app
-    command: air ./main.go make protoc
+      - ./proto:/usr/src/proto
+    command: air ./main.go && make protoc
     networks:
       - backend_network
 
